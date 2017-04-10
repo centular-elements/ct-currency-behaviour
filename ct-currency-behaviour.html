@@ -1,6 +1,7 @@
 <script>
     /** @polymerBehavior CurrencyBehaviour */
-    CurrencyBehaviour = {
+    window.CurrencyBehaviours = window.CurrencyBehaviours || {};
+    CurrencyBehaviours.CurrencyFormatBehaviour = {
 
         formatMoney : function(sym, n, c, d, t) {
             var n = parseFloat(n),
