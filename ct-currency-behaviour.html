@@ -1,34 +1,17 @@
-<link rel="import" href="../polymer/polymer.html">
+<script>
+    CurrencyBehaviour = {
 
-<!--
-`ct-currency-behaviour`
-Element to convert string to currency on the Centular platform
+        formatMoney : function(n, sym, c, d, t) {
+            var n = parseFloat(n),
+                sym = sym || 'R',
+                c = isNaN(c = Math.abs(c)) ? 2 : c,
+                d = d == undefined ? "." : d,
+                t = t == undefined ? " " : t,
+                s = n < 0 ? "- "+sym : sym,
+                i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
+                j = (j = i.length) > 3 ? j % 3 : 0;
+            return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+        }
 
-@demo demo/index.html 
--->
-
-<dom-module id="ct-currency-behaviour">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]</h2>
-  </template>
-
-  <script>
-    Polymer({
-
-      is: 'ct-currency-behaviour',
-
-      properties: {
-        prop1: {
-          type: String,
-          value: 'ct-currency-behaviour',
-        },
-      },
-
-    });
-  </script>
-</dom-module>
+    };
+</script>
